@@ -7,7 +7,7 @@ News Portal is a modern web application built with **Next.js and TypeScript** th
 ## 🧱 Project Structure
 ![image](https://github.com/user-attachments/assets/01dce9aa-5ad8-4114-8cfb-6d592305ccbf)
 
-##How to Run the Project Locally
+## How to Run the Project Locally
 ### ⚙️ Prerequisites
 - Node.js 18+  
 - npm 9+
