@@ -75,4 +75,4 @@ Handling loading states and error messages for failed API calls
 
 ## Developer
 Name: Nitish
-Goal: Full-stack Developer | Passionate about Java, Angular, and clean architecture
+Goal: Full-stack Developer | Passionate about Java, React, and clean architecture
