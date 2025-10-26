@@ -5,7 +5,7 @@ News Portal is a modern web application built with **Next.js and TypeScript** th
 ---
 
 ## 🧱 Project Structure
-![image]("https://github.com/user-attachments/assets/166dca43-7448-4ad7-86d5-d768ea67fa26")
+![image](https://github.com/user-attachments/assets/166dca43-7448-4ad7-86d5-d768ea67fa26)
 
 ##How to Run the Project Locally
 ### ⚙️ Prerequisites
@@ -67,11 +67,11 @@ Handling loading states and error messages for failed API calls
 ## ScreenShots
 |Home page|
 |---------|
-![image]("https://github.com/user-attachments/assets/28ef74d4-1455-4fe1-b6b0-d4aca8f752e0")
+![image](https://github.com/user-attachments/assets/28ef74d4-1455-4fe1-b6b0-d4aca8f752e0)
 
 |Detail News page|
 |------------|
-![image]("https://github.com/user-attachments/assets/bdf525a9-5031-4d26-86ad-4710f9fe5eb4")
+![image](https://github.com/user-attachments/assets/bdf525a9-5031-4d26-86ad-4710f9fe5eb4)
 
 ## Developer
 Name: Nitish
