@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# News Portal - Dynamic News Web Application
 
-## Getting Started
+News Portal is a modern web application built with **Next.js and TypeScript** that allows users to **browse, search, and read news articles** from multiple categories. Users can navigate by category, view full articles, and enjoy a responsive, clean interface.
 
-First, run the development server:
+---
 
+## 🧱 Project Structure
+![image]("https://github.com/user-attachments/assets/166dca43-7448-4ad7-86d5-d768ea67fa26")
+
+##How to Run the Project Locally
+### ⚙️ Prerequisites
+- Node.js 18+  
+- npm 9+
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/news-portal.git
+cd news-portal
+```
+### 2. Install dependencies
+```bash
+npm install
+npm run dev
+```
+### 3. Configure environment variables
+
+Create a .env.local file in the root directory and add your News API key:
+
+NEXT_PUBLIC_NEWS_API_KEY=your_news_api_key
+
+### 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### 5. Run sever
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Endpoints Overview (Spring Boot)
+| Method | Endpoint                            | Description                      |
+| ------ | ----------------------------------- | -------------------------------- |
+| GET    | `/top-headlines?country=us`         | Fetch latest top news            |
+| GET    | `everything?q={keyword}`            | Search news by keyword           |
+| GET    | `/top-headlines?category={category}`| Fetch news by category           |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
+Home page displaying the latest news articles
+Category-wise news filtering (e.g., Sports, Technology, Business)
+Detailed article pages with full content
+Search functionality by keyword
+Placeholder images for missing article images
+Responsive UI for desktop and mobile
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
+Frontend: Next.js 14+, React, TypeScript
+Styling: Tailwind CSS
+API: News API for fetching news
+State Management: React Context / useState / useEffect
+Deployment (optional): Vercel / Netlify
 
-## Learn More
+## Challenges Faced
+Handling missing images or empty descriptions in API responses
+Implementing pagination with dynamic API results
+Ensuring category filtering works consistently across pages
+Managing state and API requests efficiently in Next.js App Router
+Handling loading states and error messages for failed API calls
 
-To learn more about Next.js, take a look at the following resources:
+## ScreenShots
+|Home page|
+|---------|
+![image]("https://github.com/user-attachments/assets/28ef74d4-1455-4fe1-b6b0-d4aca8f752e0")
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+|Detail News page|
+|------------|
+![image]("https://github.com/user-attachments/assets/bdf525a9-5031-4d26-86ad-4710f9fe5eb4")
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Developer
+Name: Nitish
+Goal: Full-stack Developer | Passionate about Java, Angular, and clean architecture
