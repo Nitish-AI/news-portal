@@ -1,23 +1,30 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
-  reactCompiler: true,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
-    domains: [
-      "federalnewsnetwork.com",
-      "via.placeholder.com",
-      "cdn.cnn.com",
-      "static01.nyt.com",
-      "images.unsplash.com",
-      "content.api.newsapi.org", // sometimes NewsAPI uses this
-      "media.newyorker.com",
-      "ichef.bbci.co.uk",
-      "s.yimg.com",
-      "pbs.twimg.com",
-      // add any other domains your news API returns
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
     ],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-};
+  // Empty turbopack config to silence the warning
+  turbopack: {},
+}
 
-export default nextConfig;
+export default nextConfig

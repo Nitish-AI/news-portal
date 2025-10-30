@@ -1,44 +1,61 @@
-"use client";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { NewsArticle } from "@/types/news";
+import { formatDate, truncateText } from "@/lib/utils";
 
-type NewsCardProps = {
-  id: string; // unique identifier for routing
-  title: string;
-  description: string;
-  imageUrl: string;
-  category: string;
-  date: string;
-};
+interface NewsCardProps {
+  article: NewsArticle;
+}
 
-export default function NewsCard({
-  id,
-  title,
-  description,
-  imageUrl,
-  category,
-  date,
-}: NewsCardProps) {
-  const router = useRouter();
+export default function NewsCard({ article }: NewsCardProps) {
+  const placeholderUrl =
+    "https://placehold.co/400x300/e5e7eb/6b7280?text=News+Image";
 
   return (
-    <div className="bg-white shadow-md rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <img
-        src={imageUrl || "/images/no-image.png"}
-        alt={title}
-        className="w-full h-48 object-cover"
-      />
-      <div className="p-4">
-        <span className="text-sm text-blue-600 font-semibold">{category}</span>
-        <h2 className="text-black text-xl font-bold mt-2">{title}</h2>
-        <p className="text-gray-600 mt-2 line-clamp-3">{description}</p>
-        <button
-          className="text-blue-600 mt-2 font-semibold"
-          onClick={() => router.push(`/news/${id}`)}
-        >
-          Read More
-        </button>
-        <p className="text-gray-400 text-sm mt-3">{date}</p>
-      </div>
-    </div>
+    <Link href={`/news/${article.id}`}>
+      <article className="bg-white dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200/50 dark:border-gray-700/50 group hover:border-blue-300 dark:hover:border-blue-600">
+        {/* Image */}
+        <div className="relative h-52 w-full overflow-hidden">
+          <Image
+            src={article.image || placeholderUrl}
+            alt={article.title}
+            fill
+            className="object-cover group-hover:scale-110 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              if (target.src !== placeholderUrl) {
+                target.src = placeholderUrl;
+              }
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-transparent from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+
+        {/* Content */}
+        <div className="p-6">
+          <h3 className="font-bold text-xl mb-3 text-gray-900 dark:text-white line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
+            {truncateText(article.title, 80)}
+          </h3>
+
+          <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3 leading-relaxed">
+            {truncateText(
+              article.description || "No description available",
+              120
+            )}
+          </p>
+
+          {/* Source and Date */}
+          <div className="flex justify-between items-center">
+            <span className="inline-flex items-center px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">
+              {article.source.name}
+            </span>
+            <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+              {formatDate(article.publishedAt)}
+            </span>
+          </div>
+        </div>
+      </article>
+    </Link>
   );
 }

@@ -1,57 +1,32 @@
-// app/layout.tsx
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { ReactNode } from "react";
-import Link from "next/link";
+import { ThemeProvider } from "@/components/ThemeToggle";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: "NewsPortal",
-  description: "Latest news from various categories",
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "NewsPortal - Latest News & Updates",
+  description: "Stay informed with the latest news from around the world",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
-      <body className="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-        {/* Header */}
-        <header className="bg-white dark:bg-gray-800 shadow-md">
-          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <Link
-              href="/"
-              className="text-2xl font-bold text-blue-600 dark:text-blue-400"
-            >
-              NewsPortal
-            </Link>
-
-            <ul className="flex gap-4">
-              {[
-                "business",
-                "technology",
-                "sports",
-                "health",
-                "entertainment",
-              ].map((cat) => (
-                <li key={cat}>
-                  <a
-                    href={`/category/${cat}`}
-                    className="capitalize hover:underline"
-                  >
-                    {cat}
-                  </a>
-                </li>
-              ))}
-            </ul>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className} antialiased`}>
+        <ThemeProvider>
+          <div className="min-h-screen flex flex-col bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 transition-all duration-300">
+            <Navbar />
+            <main className="flex-1 relative">{children}</main>
+            <Footer />
           </div>
-        </header>
-
-        {/* Main content */}
-        <main className="container mx-auto px-4 py-6">{children}</main>
-
-        {/* Footer */}
-        <footer className="bg-white dark:bg-gray-800 shadow-inner mt-12">
-          <div className="container mx-auto px-4 py-6 text-center text-gray-500 dark:text-gray-400">
-            &copy; {new Date().getFullYear()} NewsPortal. All rights reserved.
-          </div>
-        </footer>
+        </ThemeProvider>
       </body>
     </html>
   );

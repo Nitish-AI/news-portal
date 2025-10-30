@@ -1,73 +1,81 @@
-"use client";
-import { useEffect, useState } from "react";
-import NewsCard from "@/components/NewsCard";
-import { fetchNewsByCategory, Article } from "@/lib/api";
-import { usePathname } from "next/navigation";
+import { notFound } from "next/navigation";
+import { NewsApiService } from "@/lib/api";
+import SearchBar from "@/components/SearchBar";
+import CategoryClientWrapper from "./CategoryClientWrapper";
 
 interface CategoryPageProps {
   params: {
     categoryName: string;
   };
+  searchParams: {
+    page?: string;
+  };
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+const validCategories = [
+  "business",
+  "technology",
+  "sports",
+  "health",
+  "entertainment",
+  "science",
+];
 
-  // Ensure category is lowercase to match NewsAPI
-  const category = params.categoryName?.toLowerCase() || "";
+export default async function CategoryPage({
+  params,
+  searchParams,
+}: CategoryPageProps) {
+  const { categoryName } = params;
+  const page = parseInt(searchParams.page || "1");
 
-  useEffect(() => {
-    const getNews = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const data = await fetchNewsByCategory(category);
-        if (!data || data.length === 0) {
-          setError("No news found for this category.");
-        } else {
-          setArticles(data);
-        }
-      } catch (err) {
-        console.error(err);
-        setError("Failed to fetch news. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
+  if (!validCategories.includes(categoryName)) {
+    notFound();
+  }
 
-    getNews();
-  }, [category]);
-
-  if (loading)
-    return <p className="text-center mt-10 text-gray-500">Loading news...</p>;
-
-  if (error)
-    return <p className="text-center mt-10 text-gray-500">{error}</p>;
+  const result = await NewsApiService.getTopHeadlines("us", categoryName, page);
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6 capitalize text-center">
-        {category} News
-      </h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Header */}
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 capitalize">
+          {categoryName} News
+        </h1>
+        <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
+          Latest {categoryName} news and updates
+        </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {articles.map((article, idx) => (
-          <NewsCard
-            key={idx}
-            id={encodeURIComponent(article.url)}
-            title={article.title}
-            description={article.description || "No description available."}
-            imageUrl={
-              article.urlToImage ||
-              "https://via.placeholder.com/400x200?text=No+Image"
-            }
-            category={article.source.name}
-            date={new Date(article.publishedAt).toLocaleDateString()}
-          />
-        ))}
+        <SearchBar />
       </div>
+
+      {/* Articles Grid */}
+      {result.articles.length > 0 ? (
+        <CategoryClientWrapper
+          articles={result.articles}
+          pagination={result.pagination}
+          categoryName={categoryName}
+        />
+      ) : (
+        <div className="text-center py-12">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            No articles found
+          </h3>
+          <p className="text-gray-600 dark:text-gray-400">
+            Unable to load {categoryName} news at the moment
+          </p>
+        </div>
+      )}
     </div>
   );
+}
+
+export async function generateMetadata({ params }: CategoryPageProps) {
+  const { categoryName } = params;
+
+  return {
+    title: `${
+      categoryName.charAt(0).toUpperCase() + categoryName.slice(1)
+    } News - NewsPortal`,
+    description: `Latest ${categoryName} news and updates from around the world`,
+  };
 }
