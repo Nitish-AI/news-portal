@@ -66,10 +66,11 @@ Handling loading states and error messages for failed API calls
 ## ScreenShots
 |Home page|
 |---------|
-![image](https://github.com/user-attachments/assets/28ef74d4-1455-4fe1-b6b0-d4aca8f752e0)
-<img width="1920" height="1080" alt="Screenshot (117)" src="https://github.com/user-attachments/assets/06e5d1b9-ecc4-4d76-b133-2afff5287c8f" />
-<img width="1920" height="1080" alt="Screenshot (118)" src="https://github.com/user-attachments/assets/ab470204-8079-4630-9804-f4e146fb3488" />
-<img width="1920" height="1080" alt="Screenshot (119)" src="https://github.com/user-attachments/assets/0639d18d-0083-46ca-9a5f-7f876f443c29" />
+![image](
+<img width="1915" height="917" alt="image" src="https://github.com/user-attachments/assets/c10ec015-51de-4339-a562-646d558ec07b" />
+<img width="1920" height="820" alt="image" src="https://github.com/user-attachments/assets/94b03432-2a9a-402a-bab2-b3f1b91ff420" />
+<img width="1912" height="835" alt="image" src="https://github.com/user-attachments/assets/d9887c1a-ecdb-4865-a858-e88c031a051a" />)
+
 
 |Detail News page|
 |------------|
