@@ -5,7 +5,7 @@ News Portal is a modern web application built with **Next.js and TypeScript** th
 ---
 
 ## 🧱 Project Structure
-![image](https://github.com/user-attachments/assets/01dce9aa-5ad8-4114-8cfb-6d592305ccbf)
+![image](https://github.com/user-attachments/assets/344d8cf7-5d12-4116-b2d0-4b8b9bb844a8)
 
 ## How to Run the Project Locally
 ### ⚙️ Prerequisites
@@ -28,12 +28,11 @@ Create a .env.local file in the root directory and add your News API key:
 
 NEXT_PUBLIC_NEWS_API_KEY=your_news_api_key
 
-### 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-### 5. Run sever
+### 4. Run sever
 ```bash
 npm run dev
 ```
+### 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## API Endpoints Overview (Spring Boot)
 | Method | Endpoint                            | Description                      |
@@ -55,7 +54,7 @@ Frontend: Next.js 14+, React, TypeScript
 Styling: Tailwind CSS
 API: News API for fetching news
 State Management: React Context / useState / useEffect
-Deployment (optional): Vercel / Netlify
+Deployment: Vercel
 
 ## Challenges Faced
 Handling missing images or empty descriptions in API responses
@@ -68,6 +67,9 @@ Handling loading states and error messages for failed API calls
 |Home page|
 |---------|
 ![image](https://github.com/user-attachments/assets/28ef74d4-1455-4fe1-b6b0-d4aca8f752e0)
+<img width="1920" height="1080" alt="Screenshot (117)" src="https://github.com/user-attachments/assets/06e5d1b9-ecc4-4d76-b133-2afff5287c8f" />
+<img width="1920" height="1080" alt="Screenshot (118)" src="https://github.com/user-attachments/assets/ab470204-8079-4630-9804-f4e146fb3488" />
+<img width="1920" height="1080" alt="Screenshot (119)" src="https://github.com/user-attachments/assets/0639d18d-0083-46ca-9a5f-7f876f443c29" />
 
 |Detail News page|
 |------------|
